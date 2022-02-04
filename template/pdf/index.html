@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block con %}
+<div class = "container mt-5 mb-5" style="width: 80%; font-weight: bold; font-size: x-large;">
+    <h1><b>PDF</b></h1>
+    {% if user.is_authenticated %}
+        <form method ="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-5 mt-5">
+                <input type="file" class="form-control" name="pdf" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <button>변환</button>
+        </form>
+        <div class="mb-3 mt-3">
+            <textarea class="form-control" name="ncom" cols="120" rows="50" disabled>{{text}}</textarea>
+        </div>
+    {%else%}
+        <div>
+            <br><hr>
+            <h2><b>Please Login</b></h2>
+            <a href="{% url 'acc:login'%}"><button>Login</button></a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block anycon %}
+    
+{% endblock %}

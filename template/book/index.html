@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block con %}
+{%if user.is_authenticated %}
+<div class = "container mt-5 mb-5" style="width: 80%; font-weight: bold; font-size: x-large;">
+    <h1><b>{{user.username}}'s BOOK</b></h1>
+    <div class="rows">
+        {% for i in blist %}
+            <div class="card mt-3 col-lg-3" style="{% if i.impo %}background-color: gold;{% endif %}">
+                <div class="card-body">
+                    <h5 class="card-title">{{i.site_name}}</h5>
+                    <p class="card-text">{{i.content}}</p>
+                    <a href="{{i.site_url}}" class="btn btn-primary">이동</a>
+                    <a href="{% url 'book:delete' i.id%}" class="btn btn-danger">삭제</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="text-end">
+        <a href="{% url 'book:create' %}"><button class="btn btn-dark">생성</button></a>
+    </div>
+</div>
+{% else %}
+<div class = "container mt-5 text-center" style="width: 80%; font-weight: bold; font-size: x-large;">
+    <h2><b>Login Please!!!</b></h2>
+</div>
+{% endif %}
+{% endblock %}
+{% block anycon %}
+{% endblock %}
